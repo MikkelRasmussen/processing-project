@@ -25,12 +25,9 @@ class Color {
     fill(c);
 
 
-    
-    
     if (IsPointInsideArc(mouseX, mouseY, location.x, location.y, size, startAngle, endAngle) ) {
-       selectedColor = cc;
-       arc(location.x, location.y, size*1.2, size*1.2, startAngle, endAngle);
-      
+      selectedColor = cc;
+      arc(location.x, location.y, size*1.2, size*1.2, startAngle, endAngle);
     } else {
       arc(location.x, location.y, size, size, startAngle, endAngle);
     }
