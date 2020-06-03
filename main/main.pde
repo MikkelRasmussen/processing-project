@@ -76,7 +76,7 @@ void draw() {
       text("Farve: Ikke Valgt", width*1/4-30, height*4/5);
     } else {
       fill(selectedColor);
-      text("Farve: "+hex(selectedColor), width*1/4-30, height*4/5);
+      text("Farve: "+hex(selectedColor, 6), width*1/4-30, height*4/5);
     }
     break;
 
@@ -91,9 +91,9 @@ void draw() {
       text("Komplementær Farve: NA", width*1/4-30, height*4/5+30);
     } else {
       fill(selectedColor);
-      text("Farve: "+hex(selectedColor), width*1/4-30, height*4/5);
+      text("Farve: "+hex(selectedColor, 6), width*1/4-30, height*4/5);
       fill(contrastColors[0]);
-      text("Komplementær Farve: "+hex(contrastColors[0]), width*1/4-30, height*4/5+30);
+      text("Komplementær Farve: "+hex(contrastColors[0], 6), width*1/4-30, height*4/5+30);
     }
     break;
 
@@ -110,11 +110,11 @@ void draw() {
       text("Tertiære Farve 1: NA", width*1/4-30, height*4/5+60);
     } else {
       fill(selectedColor);
-      text("Farve: "+hex(selectedColor), width*1/4-30, height*4/5);
+      text("Farve: "+hex(selectedColor, 6), width*1/4-30, height*4/5);
       fill(contrastColors[0]);
-      text("Tertiære Farve 1: "+hex(contrastColors[0]), width*1/4-30, height*4/5+30);
+      text("Tertiære Farve 1: "+hex(contrastColors[0], 6), width*1/4-30, height*4/5+30);
       fill(contrastColors[1]);
-      text("Tertiære Farve 1: "+hex(contrastColors[1]), width*1/4-30, height*4/5+60);
+      text("Tertiære Farve 1: "+hex(contrastColors[1], 6), width*1/4-30, height*4/5+60);
     }
     break;
   }
