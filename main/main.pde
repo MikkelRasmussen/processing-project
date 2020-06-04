@@ -1,9 +1,3 @@
-/* 
- Indtil videre er det kun mode 1 der virker hvor man kan se farvehjulet og se den
- speciffike farves farvekode, nu mangler jeg kun og få lavet de to ekstra modes 
- hvor man kan få komplementær og tertiære farver ud fra ens valgte farve
- */
-
 /*
   Definerer de 2 Arraylister, som indenholder farverne samt mode knapperne
  */
@@ -151,11 +145,11 @@ void draw() {
     if (selectedColor == -1) {
       text("Farve: Ikke Valgt", width*1/4-30, height*4/5);
       text("Tertiære Farve 1: NA", width*1/4-30, height*4/5+30);
-      text("Tertiære Farve 1: NA", width*1/4-30, height*4/5+60);
+      text("Tertiære Farve 2: NA", width*1/4-30, height*4/5+60);
     } else {
       text("Farve: #"+hex(selectedColor, 6), width*1/4-30, height*4/5);
       text("Tertiære Farve 1: #"+hex(contrastColors[0], 6), width*1/4-30, height*4/5+30);
-      text("Tertiære Farve 1: #"+hex(contrastColors[1], 6), width*1/4-30, height*4/5+60);
+      text("Tertiære Farve 2: #"+hex(contrastColors[1], 6), width*1/4-30, height*4/5+60);
     }
     break;
   }

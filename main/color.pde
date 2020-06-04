@@ -229,7 +229,7 @@ void contrastColorDuo(int id) {
 /* 
  Skulle beregne en ny vinkel ud fra den nye, men i stedet for at være 30grader af cirklen skal den være 180 grader 
  (Virker ikke pt)
- */
+ 
 
 float halfCircleStart(float ang) {
   float angle;
@@ -255,3 +255,4 @@ float halfCircleEnd(float ang) {
     return 0;
   }
 }
+*/

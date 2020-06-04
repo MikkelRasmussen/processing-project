@@ -11,7 +11,6 @@ class Mode {
   Mode(float x, float y, float w, float h, int mt) {
 
     location = new PVector(x, y);
-
     size = new PVector(w, h);
 
     modeNumber = mt;
