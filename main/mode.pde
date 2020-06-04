@@ -1,5 +1,8 @@
 class Mode {
 
+  /*
+  Mode knapperne oprettet som et objekt.
+   */
 
   PVector location, size;
 
@@ -18,10 +21,10 @@ class Mode {
     fill(0);
     textSize(20);
     text("Mode" + modeNumber, location.x+size.x*1/4, 45);
-        
-        
-        
-  /* fill(110);
-   rect(location.x,location.y,size.x,size.y);*/
+
+
+
+    /* fill(110);
+     rect(location.x,location.y,size.x,size.y);*/
   }
 }

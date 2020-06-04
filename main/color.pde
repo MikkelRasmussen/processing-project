@@ -1,5 +1,9 @@
 class Color {
 
+  /* 
+   Variabler
+   */
+
   PVector location;
   float startAngle, endAngle;
 
@@ -12,7 +16,9 @@ class Color {
 
   boolean contrast = false;
 
-
+  /*
+    Constructeren 
+   */
   Color(float x, float y, float a1, float a2, int c, int id) {
 
     location = new PVector(x, y);
@@ -28,19 +34,43 @@ class Color {
 
     fill(c);
     switch(Case) {
+
+      /*
+      Farvehjul ved case 1
+       */
     case 1:
+      /*
+      Er musen inden for et cirkeludsnit, hvis den er skal der vises et udvidet cirkeludsnit.
+       */
       if (IsPointInsideArc(mouseX, mouseY, location.x, location.y, size, startAngle, endAngle) ) {
+
         selectedColor = cc;
         arc(location.x, location.y, size*1.2, size*1.2, startAngle, endAngle);
+
         fill(255);
         ellipse(width/2, 325/2+100, 160, 160);
-      } else {
+      } 
+
+      /*
+        Ellers bare vis cirkeludsnittet i normalstørrelse.
+       */
+
+      else {
+
         arc(location.x, location.y, size, size, startAngle, endAngle);
+
         fill(255);
         ellipse(width/2, 325/2+100, 160, 160);
       }
       break;
+
+      /*
+      Farvehjul ved case 2
+       */
     case 2:
+      /*
+      Er musen inden for et cirkeludsnit, hvis den er skal der vises et udvidet cirkeludsnit.
+       */
       if (IsPointInsideArc(mouseX, mouseY, location.x, location.y, size, startAngle, endAngle)) {
         contrastColor(currentID);
         selectedColor = cc;
@@ -51,20 +81,38 @@ class Color {
          arc(location.x, location.y, size/5, size/5, halfCircleStart(startAngle), halfCircleEnd(endAngle));
          println(halfCircleStart(startAngle));
          println(halfCircleEnd(endAngle)); */
-      } else if (contrast) {
+      }
+
+      /* 
+       Hvis farven er sat som contrast=true så skal den også udvides
+       */
+
+      else if (contrast) {
         contrastColors[0] = cc;
         arc(location.x, location.y, size*1.2, size*1.2, startAngle, endAngle);
         fill(255);
         ellipse(width/2, 325/2+100, 160, 160);
         contrast = false;
-      } else {
+      } 
+
+      /*
+        Ellers bare vis cirkeludsnittet i normalstørrelse.
+       */
+
+      else {
         arc(location.x, location.y, size, size, startAngle, endAngle );
         fill(255);
         ellipse(width/2, 325/2+100, 160, 160);
       }
-
       break;
+
+      /*
+      Farvehjul ved case 3
+       */
     case 3:
+      /*
+      Er musen inden for et cirkeludsnit, hvis den er skal der vises et udvidet cirkeludsnit.
+       */
       if (IsPointInsideArc(mouseX, mouseY, location.x, location.y, size, startAngle, endAngle)) {
         contrastColorDuo(currentID);
         selectedColor = cc;
@@ -73,12 +121,24 @@ class Color {
         ellipse(width/2, 325/2+100, 160, 160);
         fill(selectedColor);
         ellipse(width/2, 325/2+100, 40, 40);
-      } else if (contrast) {
+      } 
+
+      /* 
+       Hvis farven er sat som contrast=true så skal den også udvides
+       */
+
+      else if (contrast) {
         arc(location.x, location.y, size*1.2, size*1.2, startAngle, endAngle);
         fill(255);
         ellipse(width/2, 325/2+100, 160, 160);
         contrast = false;
-      } else {
+      } 
+
+      /*
+        Ellers bare vis cirkeludsnittet i normalstørrelse.
+       */
+
+      else {
         arc(location.x, location.y, size, size, startAngle, endAngle );
         fill(255);
         ellipse(width/2, 325/2+100, 160, 160);
@@ -87,18 +147,29 @@ class Color {
     }
   }
 
+  /* 
+   Normalizer vinklen så den kan bruges til at checke om at musen er inde i cirkeludsnittet længere nede.
+   */
+
   float normalizeAngle(float angle)
   {
     float na = angle % (2 * PI);
     if (na < 0) na = 2*PI + na;
     return na;
   }
+
+  /* 
+   Min måde at checke om musen er inden for cirkeludsnittet, dette gøres ved at checke om man er tæt nok på centeret
+   til at være inden for cirkelen, og der efter om man er inden for den specifikke del ud fra start og slut vinklen 
+   af cirkeludsnittet i cirkelen. 
+   */
   boolean IsPointInsideArc(float pointX, float pointY, 
     float centerX, float centerY, float s, float angle1, float angle2)
   {
     boolean nearCenter = sqrt(sq(pointX - centerX) + sq(pointY - centerY)) <= s /2;
-    if (!nearCenter)
+    if (!nearCenter) {
       return false;
+    }
 
     float na1 = normalizeAngle(angle1);
     float na2 = normalizeAngle(angle2);
@@ -116,6 +187,9 @@ class Color {
   }
 }
 
+/*
+Funktion til at finde komplementær farvens id samt farve.
+ */
 
 void contrastColor(int id) {
   int contrastID=0;
@@ -130,6 +204,11 @@ void contrastColor(int id) {
     contrastColor.contrast = true;
   }
 }
+
+/*
+Funktion til at finde de tertiære colors id samt farve.
+ */
+
 void contrastColorDuo(int id) {
   int contrastID=0;
   for (int i = 1; i < 3; i++) { 
@@ -142,15 +221,15 @@ void contrastColorDuo(int id) {
     if (contrastID > 0) {
       Color contrastColor = colors.get(contrastID-1); 
       contrastColor.contrast = true;
-      contrastColors[i-1] =  contrastColor.cc; 
+      contrastColors[i-1] =  contrastColor.cc;
     }
-    
-    
-    
   }
 }
 
-/* Skulle beregne en ny vinkel ud fra den nye, men i stedet for at være 30grader af cirklen skal den være 180 grader  (Virker ikke pt)*/
+/* 
+ Skulle beregne en ny vinkel ud fra den nye, men i stedet for at være 30grader af cirklen skal den være 180 grader 
+ (Virker ikke pt)
+ */
 
 float halfCircleStart(float ang) {
   float angle;
